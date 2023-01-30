@@ -10,15 +10,15 @@
     <version>2.0</version>
   </parent>
 
-  <artifactId>ExampleAddon</artifactId>
+  <artifactId>AlternativeCommandListener</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ExampleAddon</name>
-  <description>An Example addon for BetterGUI</description>
+  <name>AlternativeCommandListener</name>
+  <description>A command listener that overrides duplicated commands</description>
 
   <properties>
-    <project.mainClass>me.hsgamer.bettergui.exampleaddon.ExampleAddon</project.mainClass>
+    <project.mainClass>me.hsgamer.bettergui.alternativecommandlistener.AlternativeCommandListener</project.mainClass>
   </properties>
 
   <repositories>
