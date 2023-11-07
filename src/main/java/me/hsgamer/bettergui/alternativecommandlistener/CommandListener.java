@@ -27,7 +27,7 @@ public class CommandListener implements Listener {
         }
 
         String rawCommand = event.getMessage().substring(1);
-        if (addon.getConfig().ignoredCommands.stream().anyMatch(s -> addon.getConfig().caseInsensitive ? s.equalsIgnoreCase(rawCommand) : s.equals(rawCommand)) == addon.getConfig().shouldIgnore) {
+        if (addon.getConfig().getIgnoredCommands().stream().anyMatch(s -> addon.getConfig().isCaseInsensitive() ? s.equalsIgnoreCase(rawCommand) : s.equals(rawCommand)) == addon.getConfig().isShouldIgnore()) {
             return;
         }
 
@@ -39,7 +39,7 @@ public class CommandListener implements Listener {
         }
 
         Map<String, Command> menuCommand = BetterGUI.getInstance().getMenuCommandManager().getRegisteredMenuCommand();
-        if (addon.getConfig().caseInsensitive) {
+        if (addon.getConfig().isCaseInsensitive()) {
             menuCommand = new CaseInsensitiveStringMap<>(menuCommand);
         }
 
