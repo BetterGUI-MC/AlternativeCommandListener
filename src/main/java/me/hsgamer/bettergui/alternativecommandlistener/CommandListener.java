@@ -1,6 +1,7 @@
 package me.hsgamer.bettergui.alternativecommandlistener;
 
 import me.hsgamer.bettergui.BetterGUI;
+import me.hsgamer.bettergui.manager.MenuCommandManager;
 import me.hsgamer.hscore.collections.map.CaseInsensitiveStringMap;
 import org.bukkit.command.Command;
 import org.bukkit.event.EventHandler;
@@ -38,7 +39,7 @@ public class CommandListener implements Listener {
             args = Arrays.copyOfRange(split, 1, split.length);
         }
 
-        Map<String, Command> menuCommand = BetterGUI.getInstance().getMenuCommandManager().getRegisteredMenuCommand();
+        Map<String, Command> menuCommand = BetterGUI.getInstance().get(MenuCommandManager.class).getRegisteredMenuCommand();
         if (addon.getConfig().isCaseInsensitive()) {
             menuCommand = new CaseInsensitiveStringMap<>(menuCommand);
         }
