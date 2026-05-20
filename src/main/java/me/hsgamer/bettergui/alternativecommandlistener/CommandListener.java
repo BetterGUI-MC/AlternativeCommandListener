@@ -52,19 +52,12 @@ public class CommandListener implements Listener {
 
     private boolean matchCommand(String rawCommand, String pattern) {
         boolean caseInsensitive = addon.getConfig().isCaseInsensitive();
-        if (pattern.contains("*")) {
-            String[] split = pattern.split("\\*", -1);
-            StringBuilder regex = new StringBuilder();
-            for (int i = 0; i < split.length; i++) {
-                if (i > 0) {
-                    regex.append(".*");
-                }
-                regex.append(Pattern.quote(split[i]));
-            }
-            int flags = caseInsensitive ? Pattern.CASE_INSENSITIVE : 0;
-            return Pattern.compile(regex.toString(), flags).matcher(rawCommand).matches();
-        } else {
-            return caseInsensitive ? pattern.equalsIgnoreCase(rawCommand) : pattern.equals(rawCommand);
+        if (pattern.endsWith("*")) {
+            String prefix = pattern.substring(0, pattern.length() - 1);
+            return caseInsensitive
+                    ? rawCommand.regionMatches(true, 0, prefix, 0, prefix.length())
+                    : rawCommand.startsWith(prefix);
         }
+        return caseInsensitive ? pattern.equalsIgnoreCase(rawCommand) : pattern.equals(rawCommand);
     }
 }
